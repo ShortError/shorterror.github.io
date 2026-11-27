@@ -119,47 +119,69 @@
     }
   }
 
-  /* Clean Pill Toggle Button (Matches your 2nd image) */
+  /* Pill Toggle Button with Moon & Sun Icons */
   .theme-pill {
     position: relative;
     display: inline-flex;
     align-items: center;
-    width: 44px;
-    height: 24px;
+    width: 48px;
+    height: 26px;
     padding: 0;
     margin-left: 16px;
     border-radius: 999px;
-    border: none;
+    border: 1px solid #3f3f46;
     cursor: pointer;
     vertical-align: middle;
     outline: none;
-    /* White/Light pill on Dark Page */
-    background-color: #d4d4d8;
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
-    transition: background-color 0.25s ease;
+    /* Dark button on Dark Page */
+    background-color: #27272a;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.25s ease, border-color 0.25s ease;
   }
 
   .theme-pill-knob {
     position: absolute;
-    top: 3px;
-    left: 3px;
-    width: 18px;
-    height: 18px;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
-    background-color: #ffffff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s ease;
+    background-color: #3f3f46;
+    color: #f4f4f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s ease, color 0.25s ease;
   }
 
-  /* Dark pill on Light Page (Knob slides right) */
+  .theme-pill-knob .icon-moon {
+    display: block;
+  }
+  .theme-pill-knob .icon-sun {
+    display: none;
+  }
+
+  /* White/Light button on White Page (Knob slides right) */
   html[data-theme="light"] .theme-pill {
-    background-color: #27272a;
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.6);
+    background-color: #e4e4e7;
+    border-color: #d4d4d8;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12);
   }
 
   html[data-theme="light"] .theme-pill-knob {
-    transform: translateX(20px);
-    background-color: #52525b;
+    transform: translateX(22px);
+    background-color: #ffffff;
+    color: #f59e0b;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  html[data-theme="light"] .theme-pill-knob .icon-moon {
+    display: none;
+  }
+
+  html[data-theme="light"] .theme-pill-knob .icon-sun {
+    display: block;
   }
 
   @media screen and (max-width: 600px) {
@@ -195,7 +217,24 @@
           {%- endfor -%}
 
           <button type="button" id="theme-toggle" class="theme-pill" aria-label="Toggle theme">
-            <span class="theme-pill-knob"></span>
+            <span class="theme-pill-knob">
+              <!-- Moon Icon (Dark Mode) -->
+              <svg class="icon-moon" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+              <!-- Sun Icon (Light Mode) -->
+              <svg class="icon-sun" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+            </span>
           </button>
         </div>
       </nav>
