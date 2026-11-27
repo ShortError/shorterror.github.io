@@ -4,323 +4,231 @@ permalink: /blog/
 ---
 
 <style>
-  /* Hide Minima's default web header */
+  /* Hide Minima's default page title */
   .post-header {
     display: none;
   }
 
-  /* Broadsheet Paper Sheet */
-  .print-paper {
-    font-family: "Times New Roman", Times, Georgia, serif;
-    padding: 28px 32px;
-    border: 1px solid #3f3f46;
-    /* Dark Newsprint */
-    background-color: #181817;
-    background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
-    background-size: 16px 16px;
-    color: #e2dfd7;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+  .medium-feed {
+    max-width: 720px;
+    margin: 0 auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   }
 
-  /* Classic Aged Newsprint Paper in Light Mode */
-  html[data-theme="light"] .print-paper {
-    background-color: #f4efe6;
-    background-image: radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 0);
-    background-size: 14px 14px;
-    color: #1c1917;
-    border-color: #c7bfb0;
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+  /* Top Medium-Style Tab Header */
+  .medium-tabs {
+    display: flex;
+    gap: 24px;
+    border-bottom: 1px solid #27272a;
+    margin-bottom: 8px;
   }
 
-  /* Top Ears + Masthead */
-  .print-top-row {
-    display: grid;
-    grid-template-columns: 110px 1fr 110px;
+  html[data-theme="light"] .medium-tabs {
+    border-bottom-color: #e4e4e7;
+  }
+
+  .medium-tab {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 12px 0;
+    color: #f4f4f5;
+    border-bottom: 2px solid #f4f4f5;
+    margin-bottom: -1px;
+  }
+
+  html[data-theme="light"] .medium-tab {
+    color: #18181b;
+    border-bottom-color: #18181b;
+  }
+
+  /* Article Row */
+  .medium-article {
+    padding: 28px 0;
+    border-bottom: 1px solid #27272a;
+  }
+
+  html[data-theme="light"] .medium-article {
+    border-bottom-color: #f4f4f5;
+  }
+
+  /* Author Row (Avatar + Name + Date) */
+  .medium-author-row {
+    display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     margin-bottom: 10px;
+    font-size: 13px;
   }
 
-  .print-ear {
-    border: 1px solid currentColor;
-    padding: 6px 8px;
-    font-size: 10px;
-    line-height: 1.3;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .print-masthead {
-    text-align: center;
-    font-size: 44px;
+  .medium-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    color: #ffffff;
+    font-size: 12px;
     font-weight: 700;
-    letter-spacing: 0.04em;
-    line-height: 1;
-    margin: 0 !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     text-transform: uppercase;
-    font-family: Georgia, "Times New Roman", serif;
   }
 
-  /* Double Rule Dateline Bar */
-  .print-dateline {
+  .medium-author-name {
+    font-weight: 500;
+    color: #e4e4e7;
+  }
+
+  html[data-theme="light"] .medium-author-name {
+    color: #18181b;
+  }
+
+  .medium-date {
+    color: #a1a1aa;
+  }
+
+  html[data-theme="light"] .medium-date {
+    color: #71717a;
+  }
+
+  /* Content + Right Thumbnail Split */
+  .medium-body {
     display: flex;
     justify-content: space-between;
-    border-top: 2px solid currentColor;
-    border-bottom: 4px double currentColor;
-    padding: 5px 4px;
-    margin-bottom: 20px;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+    align-items: flex-start;
+    gap: 28px;
   }
 
-  /* Lead Headline Banner */
-  .print-headline-block {
-    text-align: center;
-    border-bottom: 1px solid currentColor;
-    padding-bottom: 14px;
-    margin-bottom: 18px;
+  .medium-text {
+    flex: 1;
+    min-width: 0;
   }
 
-  .print-headline {
-    font-size: 32px;
+  .medium-title {
+    font-size: 22px;
     font-weight: 700;
-    line-height: 1.15;
+    line-height: 1.28;
+    letter-spacing: -0.015em;
     margin: 0 0 8px 0 !important;
-    letter-spacing: -0.01em;
   }
 
-  .print-headline a {
-    color: inherit !important;
+  .medium-title a {
+    color: #f4f4f5 !important;
     text-decoration: none;
   }
 
-  .print-headline a:hover {
-    text-decoration: underline;
-  }
-
-  .print-subhead {
-    font-style: italic;
-    font-size: 16px;
+  .medium-title a:hover {
     opacity: 0.85;
-    margin: 0 0 8px 0;
   }
 
-  .print-byline {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-weight: 700;
+  html[data-theme="light"] .medium-title a {
+    color: #18181b !important;
   }
 
-  /* True Multi-Column Newspaper Body (with vertical column rules) */
-  .print-lead-columns {
-    column-count: 3;
-    column-gap: 22px;
-    column-rule: 1px solid rgba(160, 155, 145, 0.35);
-    text-align: justify;
-    font-size: 14.5px;
+  .medium-excerpt {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 15.5px;
     line-height: 1.55;
-    padding-bottom: 20px;
-    border-bottom: 3px double currentColor;
-    margin-bottom: 22px;
+    color: #a1a1aa;
+    margin: 0 0 16px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
-  html[data-theme="light"] .print-lead-columns {
-    column-rule-color: rgba(28, 25, 23, 0.3);
+  html[data-theme="light"] .medium-excerpt {
+    color: #52525b;
   }
 
-  .print-lead-columns p {
-    margin-bottom: 12px;
+  /* Footer Metadata (Tag Pill + Read Time) */
+  .medium-footer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: #a1a1aa;
   }
 
-  /* Classic Newspaper Drop Cap */
-  .print-lead-columns p:first-of-type::first-letter {
-    float: left;
-    font-size: 46px;
-    line-height: 0.85;
-    padding-top: 4px;
-    padding-right: 8px;
-    padding-bottom: 2px;
-    font-weight: 700;
+  html[data-theme="light"] .medium-footer {
+    color: #71717a;
   }
 
-  /* Halftone Black-and-White Newspaper Photo */
-  .print-photo-box {
-    break-inside: avoid;
-    margin-bottom: 12px;
-    border: 1px solid currentColor;
-    padding: 4px;
+  .medium-pill {
+    background-color: #27272a;
+    color: #d4d4d8;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 12px;
   }
 
-  .print-photo-box img {
-    width: 100%;
-    height: 140px;
+  html[data-theme="light"] .medium-pill {
+    background-color: #f4f4f5;
+    color: #3f3f46;
+  }
+
+  /* Right-Side Thumbnail */
+  .medium-thumb {
+    width: 112px;
+    height: 112px;
+    border-radius: 4px;
     object-fit: cover;
-    display: block;
-    filter: grayscale(100%) contrast(1.2);
+    flex-shrink: 0;
+    margin-top: 2px;
   }
 
-  .print-photo-caption {
-    font-size: 11px;
-    font-style: italic;
-    line-height: 1.3;
-    padding-top: 4px;
-    text-align: left;
-  }
-
-  .print-jump-link {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: inherit !important;
-    text-decoration: underline;
-    margin-top: 4px;
-  }
-
-  /* Lower Broadsheet Columns for Other Editions */
-  .print-archive-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-
-  .print-brief {
-    border-bottom: 1px solid rgba(160, 155, 145, 0.35);
-    padding-bottom: 14px;
-    text-align: justify;
-  }
-
-  html[data-theme="light"] .print-brief {
-    border-bottom-color: rgba(28, 25, 23, 0.3);
-  }
-
-  .print-brief:nth-child(odd) {
-    padding-right: 18px;
-    border-right: 1px solid rgba(160, 155, 145, 0.35);
-  }
-
-  html[data-theme="light"] .print-brief:nth-child(odd) {
-    border-right-color: rgba(28, 25, 23, 0.3);
-  }
-
-  .print-brief-title {
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 1.2;
-    text-align: left;
-    margin: 0 0 6px 0 !important;
-  }
-
-  .print-brief-title a {
-    color: inherit !important;
-    text-decoration: none;
-  }
-
-  .print-brief-title a:hover {
-    text-decoration: underline;
-  }
-
-  .print-brief-meta {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 6px;
-    opacity: 0.8;
-  }
-
-  .print-brief-text {
-    font-size: 13.5px;
-    line-height: 1.5;
-    margin-bottom: 6px;
-  }
-
-  @media screen and (max-width: 700px) {
-    .print-paper {
-      padding: 18px 16px;
+  @media screen and (max-width: 600px) {
+    .medium-body {
+      gap: 16px;
     }
-    .print-top-row {
-      grid-template-columns: 1fr;
+    .medium-title {
+      font-size: 18px;
     }
-    .print-ear {
+    .medium-excerpt {
       display: none;
     }
-    .print-masthead {
-      font-size: 30px;
-    }
-    .print-lead-columns {
-      column-count: 1;
-    }
-    .print-archive-grid {
-      grid-template-columns: 1fr;
-    }
-    .print-brief:nth-child(odd) {
-      padding-right: 0;
-      border-right: none;
+    .medium-thumb {
+      width: 80px;
+      height: 80px;
     }
   }
 </style>
 
-<div class="print-paper">
-  <!-- Classic Newspaper Header with Corner "Ears" -->
-  <div class="print-top-row">
-    <div class="print-ear">Morning Edition<br>Est. 2026</div>
-    <h1 class="print-masthead">The Daily Gazette</h1>
-    <div class="print-ear">Price: Free<br>All Pages</div>
-  </div>
-
-  <!-- Double-Rule Dateline -->
-  <div class="print-dateline">
-    <span>Vol. I — No. {{ site.posts.size }}</span>
-    <span>{{ "now" | date: "%A, %B %-d, %Y" }}</span>
-    <span>Personal Print</span>
+<div class="medium-feed">
+  <div class="medium-tabs">
+    <div class="medium-tab">Latest</div>
   </div>
 
   {%- for post in site.posts -%}
-    {%- if forloop.first -%}
-      <!-- Front-Page Lead Headline -->
-      <div class="print-headline-block">
-        <h2 class="print-headline">
-          <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-        </h2>
-        <div class="print-byline">
-          By {{ site.title | default: "The Editor" }} &nbsp;•&nbsp; {{ post.date | date: "%B %-d, %Y" }}
+    {%- assign words = post.content | number_of_words -%}
+    {%- assign mins = words | divided_by: 200 | plus: 1 -%}
+    {%- assign author_name = site.title | default: "ShortError" -%}
+
+    <article class="medium-article">
+      <div class="medium-author-row">
+        <span class="medium-avatar">{{ author_name | slice: 0 }}</span>
+        <span class="medium-author-name">{{ author_name }}</span>
+        <span class="medium-date">· {{ post.date | date: "%b %-d, %Y" }}</span>
+      </div>
+
+      <div class="medium-body">
+        <div class="medium-text">
+          <h2 class="medium-title">
+            <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+          </h2>
+          <p class="medium-excerpt">
+            {{ post.excerpt | strip_html | truncatewords: 30 }}
+          </p>
+          <div class="medium-footer">
+            <span class="medium-pill">Essay</span>
+            <span>{{ mins }} min read</span>
+          </div>
         </div>
+
+        <a href="{{ post.url | relative_url }}">
+          <img class="medium-thumb" src="{{ post.image | default: 'https://unsplash.com' }}" alt="{{ post.title | escape }}">
+        </a>
       </div>
-
-      <!-- 3-Column Justified Print Text with Drop Cap & B&W Photo -->
-      <div class="print-lead-columns">
-        <p>{{ post.content | strip_html | truncatewords: 165 }}</p>
-
-        <div class="print-photo-box">
-          <img src="https://unsplash.com" alt="Editorial illustration">
-          <div class="print-photo-caption">Fig. 1 — Morning reflections over a quiet cup of tea.</div>
-        </div>
-
-        <a class="print-jump-link" href="{{ post.url | relative_url }}">Continued on Page A2 →</a>
-      </div>
-
-      {%- if site.posts.size > 1 -%}
-        <div class="print-archive-grid">
-      {%- endif -%}
-    {%- else -%}
-      <!-- Secondary Broadsheet Columns -->
-      <article class="print-brief">
-        <div class="print-brief-meta">{{ post.date | date: "%B %-d, %Y" }}</div>
-        <h3 class="print-brief-title">
-          <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-        </h3>
-        <p class="print-brief-text">{{ post.excerpt | strip_html | truncatewords: 35 }}</p>
-        <a class="print-jump-link" href="{{ post.url | relative_url }}">Read Full Dispatch →</a>
-      </article>
-    {%- endif -%}
-
-    {%- if forloop.last and site.posts.size > 1 -%}
-      </div>
-    {%- endif -%}
+    </article>
   {%- endfor -%}
 </div>
