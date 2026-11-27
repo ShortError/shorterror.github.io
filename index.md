@@ -2,7 +2,7 @@
 layout: home
 ---
 
-Hi, I'm **Yasir**. Welcome to my personal website and blog.
+Hi, I'm **Short Error**. Welcome to my personal website and blog.
 
 ### Featured Work
 * **Project One** — A short description of what you built and a [link to it](https://github.com).
