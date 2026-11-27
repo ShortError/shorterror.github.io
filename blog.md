@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Blog
+title: What’s on My Mind?
 permalink: /blog/
 ---
 
