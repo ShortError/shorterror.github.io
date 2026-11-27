@@ -1,9 +1,8 @@
 ---
-layout: home
+layout: page
 ---
 
-Hi, I'm **Short Error**. Welcome to my personal website and blog.
+Welcome to my personal website.
 
-### Featured Work
-* **Project One** — A short description of what you built and a [link to it](https://github.com).
-* **Project Two** — Another highlight of your skills or work.
+### What I Do
+Write a short introduction about yourself, your skills, or what you are currently working on.

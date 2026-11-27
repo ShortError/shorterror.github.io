@@ -2,5 +2,6 @@ title: Yasir
 description: My personal portfolio and blog
 theme: minima
 header_pages:
-  - projects.md
-  - about.md
+  - blog.md
+  #- projects.md
+  #- about.md
