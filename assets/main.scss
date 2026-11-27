@@ -3,6 +3,82 @@
 
 @import "minima";
 
+/* Hide RSS link */
 .rss-subscribe {
   display: none;
+}
+
+/* Automatic Dark Mode based on system theme */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #121212;
+    color: #e4e4e7;
+  }
+
+  .site-header {
+    border-top-color: #27272a;
+    border-bottom-color: #27272a;
+    background-color: #18181b;
+  }
+
+  .site-title,
+  .site-title:visited,
+  .site-nav .page-link {
+    color: #f4f4f5;
+  }
+
+  .site-footer {
+    border-top-color: #27272a;
+    background-color: #18181b;
+    color: #a1a1aa;
+  }
+
+  a {
+    color: #60a5fa;
+  }
+
+  a:visited {
+    color: #93c5fd;
+  }
+
+  .post-meta {
+    color: #a1a1aa;
+  }
+
+  pre,
+  code {
+    background-color: #1e1e22;
+    border-color: #3f3f46;
+    color: #e4e4e7;
+  }
+
+  blockquote {
+    color: #a1a1aa;
+    border-left-color: #3f3f46;
+  }
+
+  table {
+    color: #e4e4e7;
+    border-color: #3f3f46;
+  }
+
+  table th {
+    background-color: #27272a;
+    border-color: #3f3f46;
+  }
+
+  table td {
+    border-color: #3f3f46;
+  }
+
+  /* Mobile hamburger menu background in dark mode */
+  @media screen and (max-width: 600px) {
+    .site-nav {
+      background-color: #18181b;
+      border-color: #27272a;
+    }
+    .site-nav .menu-icon > svg {
+      fill: #f4f4f5;
+    }
+  }
 }
