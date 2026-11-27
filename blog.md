@@ -92,14 +92,19 @@ permalink: /blog/
     color: #52525b;
   }
 
-  /* Optional Right-Side Rectangular Image (Only renders if image exists) */
+  /* Optional Right-Side Rectangular Image */
+  .feed-thumb-link {
+    flex-shrink: 0;
+    display: block;
+    margin-top: 2px;
+  }
+
   .feed-thumb {
     width: 160px;
     height: 106px;
     border-radius: 4px;
     object-fit: cover;
-    flex-shrink: 0;
-    margin-top: 2px;
+    display: block;
   }
 
   @media screen and (max-width: 600px) {
@@ -126,7 +131,7 @@ permalink: /blog/
       {%- else -%}{%- assign suffix = "th" -%}
     {%- endcase -%}
 
-    {%- comment -%} Use front-matter image if set, otherwise auto-detect the first image inside the post content {%- endcomment -%}
+    {%- comment -%} Properly extract the first image URL from post.image or post.content {%- endcomment -%}
     {%- assign post_img = post.image -%}
     {%- unless post_img -%}
       {%- if post.content contains '<img ' -%}
@@ -136,6 +141,13 @@ permalink: /blog/
         {%- endif -%}
       {%- endif -%}
     {%- endunless -%}
+
+    {%- comment -%} Strip HTML/style tags from full post content so the excerpt always shows real story text {%- endcomment -%}
+    {%- assign clean_body = post.content -%}
+    {%- if clean_body contains '</style>' -%}
+      {%- assign clean_body = clean_body | split: '</style>' | last -%}
+    {%- endif -%}
+    {%- assign clean_snippet = clean_body | strip_html | normalize_whitespace | truncatewords: 28 -%}
 
     <article class="feed-item">
       <div class="feed-date-row">
@@ -153,14 +165,12 @@ permalink: /blog/
           <h2 class="feed-title">
             <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
           </h2>
-          <p class="feed-excerpt">
-            {{ post.excerpt | strip_html | truncatewords: 28 }}
-          </p>
+          <p class="feed-excerpt">{{ clean_snippet }}</p>
         </div>
 
         {%- if post_img and post_img != "" -%}
-          <a href="{{ post.url | relative_url }}">
-            <img class="feed-thumb" src="{{ post_img }}" alt="{{ post.title | escape }}">
+          <a class="feed-thumb-link" href="{{ post.url | relative_url }}">
+            <img class="feed-thumb" src="{{ post_img }}" alt="">
           </a>
         {%- endif -%}
       </div>
