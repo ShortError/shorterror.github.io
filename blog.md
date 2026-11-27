@@ -9,168 +9,93 @@ permalink: /blog/
     display: none;
   }
 
-  .medium-feed {
+  .clean-feed {
     max-width: 720px;
     margin: 0 auto;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   }
 
-  /* Top Medium-Style Tab Header */
-  .medium-tabs {
-    display: flex;
-    gap: 24px;
-    border-bottom: 1px solid #27272a;
-    margin-bottom: 8px;
-  }
-
-  html[data-theme="light"] .medium-tabs {
-    border-bottom-color: #e4e4e7;
-  }
-
-  .medium-tab {
-    font-size: 14px;
-    font-weight: 500;
-    padding: 12px 0;
-    color: #f4f4f5;
-    border-bottom: 2px solid #f4f4f5;
-    margin-bottom: -1px;
-  }
-
-  html[data-theme="light"] .medium-tab {
-    color: #18181b;
-    border-bottom-color: #18181b;
-  }
-
-  /* Article Row */
-  .medium-article {
+  .feed-item {
     padding: 28px 0;
     border-bottom: 1px solid #27272a;
   }
 
-  html[data-theme="light"] .medium-article {
-    border-bottom-color: #f4f4f5;
+  html[data-theme="light"] .feed-item {
+    border-bottom-color: #e4e4e7;
   }
 
-  /* Author Row (Avatar + Name + Date) */
-  .medium-author-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 10px;
-    font-size: 13px;
-  }
-
-  .medium-avatar {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: 700;
+  /* Top Date Row with Calendar Icon */
+  .feed-date-row {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    text-transform: uppercase;
-  }
-
-  .medium-author-name {
-    font-weight: 500;
-    color: #e4e4e7;
-  }
-
-  html[data-theme="light"] .medium-author-name {
-    color: #18181b;
-  }
-
-  .medium-date {
+    gap: 6px;
+    font-size: 13px;
     color: #a1a1aa;
+    margin-bottom: 10px;
   }
 
-  html[data-theme="light"] .medium-date {
+  html[data-theme="light"] .feed-date-row {
     color: #71717a;
   }
 
-  /* Content + Right Thumbnail Split */
-  .medium-body {
+  .feed-date-row svg {
+    flex-shrink: 0;
+    opacity: 0.85;
+  }
+
+  /* Content + Optional Right Thumbnail Split */
+  .feed-body {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 28px;
+    gap: 32px;
   }
 
-  .medium-text {
+  .feed-text {
     flex: 1;
     min-width: 0;
   }
 
-  .medium-title {
+  .feed-title {
     font-size: 22px;
     font-weight: 700;
-    line-height: 1.28;
+    line-height: 1.3;
     letter-spacing: -0.015em;
     margin: 0 0 8px 0 !important;
   }
 
-  .medium-title a {
+  .feed-title a {
     color: #f4f4f5 !important;
     text-decoration: none;
   }
 
-  .medium-title a:hover {
-    opacity: 0.85;
+  .feed-title a:hover {
+    opacity: 0.82;
   }
 
-  html[data-theme="light"] .medium-title a {
+  html[data-theme="light"] .feed-title a {
     color: #18181b !important;
   }
 
-  .medium-excerpt {
-    font-family: Georgia, "Times New Roman", serif;
+  .feed-excerpt {
     font-size: 15.5px;
     line-height: 1.55;
     color: #a1a1aa;
-    margin: 0 0 16px 0;
+    margin: 0;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
 
-  html[data-theme="light"] .medium-excerpt {
+  html[data-theme="light"] .feed-excerpt {
     color: #52525b;
   }
 
-  /* Footer Metadata (Tag Pill + Read Time) */
-  .medium-footer {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 13px;
-    color: #a1a1aa;
-  }
-
-  html[data-theme="light"] .medium-footer {
-    color: #71717a;
-  }
-
-  .medium-pill {
-    background-color: #27272a;
-    color: #d4d4d8;
-    padding: 3px 10px;
-    border-radius: 999px;
-    font-size: 12px;
-  }
-
-  html[data-theme="light"] .medium-pill {
-    background-color: #f4f4f5;
-    color: #3f3f46;
-  }
-
-  /* Right-Side Thumbnail */
-  .medium-thumb {
-    width: 112px;
-    height: 112px;
+  /* Optional Right-Side Rectangular Image (Only renders if image exists) */
+  .feed-thumb {
+    width: 160px;
+    height: 106px;
     border-radius: 4px;
     object-fit: cover;
     flex-shrink: 0;
@@ -178,56 +103,66 @@ permalink: /blog/
   }
 
   @media screen and (max-width: 600px) {
-    .medium-body {
+    .feed-body {
       gap: 16px;
     }
-    .medium-title {
+    .feed-title {
       font-size: 18px;
     }
-    .medium-excerpt {
-      display: none;
-    }
-    .medium-thumb {
-      width: 80px;
-      height: 80px;
+    .feed-thumb {
+      width: 100px;
+      height: 70px;
     }
   }
 </style>
 
-<div class="medium-feed">
-  <div class="medium-tabs">
-    <div class="medium-tab">Latest</div>
-  </div>
-
+<div class="clean-feed">
   {%- for post in site.posts -%}
-    {%- assign words = post.content | number_of_words -%}
-    {%- assign mins = words | divided_by: 200 | plus: 1 -%}
-    {%- assign author_name = site.title | default: "ShortError" -%}
+    {%- assign day = post.date | date: "%-d" -%}
+    {%- case day -%}
+      {%- when '1' or '21' or '31' -%}{%- assign suffix = "st" -%}
+      {%- when '2' or '22' -%}{%- assign suffix = "nd" -%}
+      {%- when '3' or '23' -%}{%- assign suffix = "rd" -%}
+      {%- else -%}{%- assign suffix = "th" -%}
+    {%- endcase -%}
 
-    <article class="medium-article">
-      <div class="medium-author-row">
-        <span class="medium-avatar">{{ author_name | slice: 0 }}</span>
-        <span class="medium-author-name">{{ author_name }}</span>
-        <span class="medium-date">· {{ post.date | date: "%b %-d, %Y" }}</span>
+    {%- comment -%} Use front-matter image if set, otherwise auto-detect the first image inside the post content {%- endcomment -%}
+    {%- assign post_img = post.image -%}
+    {%- unless post_img -%}
+      {%- if post.content contains '<img ' -%}
+        {%- assign img_parts = post.content | split: 'src="' -%}
+        {%- if img_parts.size > 1 -%}
+          {%- assign post_img = img_parts[1] | split: '"' | first -%}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endunless -%}
+
+    <article class="feed-item">
+      <div class="feed-date-row">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        <span>{{ post.date | date: "%B" }} {{ day }}{{ suffix }}, {{ post.date | date: "%Y" }}</span>
       </div>
 
-      <div class="medium-body">
-        <div class="medium-text">
-          <h2 class="medium-title">
+      <div class="feed-body">
+        <div class="feed-text">
+          <h2 class="feed-title">
             <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
           </h2>
-          <p class="medium-excerpt">
-            {{ post.excerpt | strip_html | truncatewords: 30 }}
+          <p class="feed-excerpt">
+            {{ post.excerpt | strip_html | truncatewords: 28 }}
           </p>
-          <div class="medium-footer">
-            <span class="medium-pill">Essay</span>
-            <span>{{ mins }} min read</span>
-          </div>
         </div>
 
-        <a href="{{ post.url | relative_url }}">
-          <img class="medium-thumb" src="{{ post.image | default: 'https://unsplash.com' }}" alt="{{ post.title | escape }}">
-        </a>
+        {%- if post_img and post_img != "" -%}
+          <a href="{{ post.url | relative_url }}">
+            <img class="feed-thumb" src="{{ post_img }}" alt="{{ post.title | escape }}">
+          </a>
+        {%- endif -%}
       </div>
     </article>
   {%- endfor -%}
