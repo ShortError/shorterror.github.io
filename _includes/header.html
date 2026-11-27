@@ -125,6 +125,38 @@
     }
   }
 
+    /* Top-Right Navigation Icons */
+  .nav-icon-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #e4e4e7 !important;
+    margin-left: 16px;
+    vertical-align: middle;
+    opacity: 0.85;
+    transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease;
+    text-decoration: none !important;
+  }
+
+  .nav-icon-link:hover {
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+
+  html[data-theme="light"] .nav-icon-link {
+    color: #27272a !important;
+  }
+
+  @media screen and (max-width: 600px) {
+    .nav-icon-link {
+      margin: 8px 15px 10px 0;
+    }
+  }
+
+
+
+
+
   /* Pill Toggle Button with Moon & Sun Icons */
   .theme-pill {
     position: relative;
@@ -214,14 +246,24 @@
           </span>
         </label>
 
-        <div class="trigger">
-          {%- for path in page_paths -%}
-            {%- assign my_page = site.pages | where: "path", path | first -%}
-            {%- if my_page.title -%}
-            <a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
-            {%- endif -%}
-          {%- endfor -%}
+                <div class="trigger">
+          <!-- Home Icon -->
+          <a class="nav-icon-link" href="{{ "/" | relative_url }}" aria-label="Home" title="Home">
+            <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </a>
 
+          <!-- Blog Icon -->
+          <a class="nav-icon-link" href="{{ "/blog/" | relative_url }}" aria-label="Blog" title="Blog">
+            <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 20h9"></path>
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+            </svg>
+          </a>
+
+          <!-- Theme Toggle Pill -->
           <button type="button" id="theme-toggle" class="theme-pill" aria-label="Toggle theme">
             <span class="theme-pill-knob">
               <!-- Moon Icon (Dark Mode) -->
@@ -243,6 +285,7 @@
             </span>
           </button>
         </div>
+
       </nav>
     {%- endif -%}
   </div>
