@@ -8,77 +8,168 @@
   display: none;
 }
 
-/* Automatic Dark Mode based on system theme */
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #121212;
-    color: #e4e4e7;
-  }
+/* Default: Dark Mode */
+body {
+  background-color: #121212;
+  color: #e4e4e7;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
 
-  .site-header {
-    border-top-color: #27272a;
-    border-bottom-color: #27272a;
+.site-header {
+  border-top-color: #27272a;
+  border-bottom-color: #27272a;
+  background-color: #18181b;
+}
+
+.site-title,
+.site-title:visited,
+.site-nav .page-link {
+  color: #f4f4f5;
+}
+
+.site-footer {
+  border-top-color: #27272a;
+  background-color: #18181b;
+  color: #a1a1aa;
+}
+
+a {
+  color: #60a5fa;
+}
+
+a:visited {
+  color: #93c5fd;
+}
+
+.post-meta {
+  color: #a1a1aa;
+}
+
+pre,
+code {
+  background-color: #1e1e22;
+  border-color: #3f3f46;
+  color: #e4e4e7;
+}
+
+blockquote {
+  color: #a1a1aa;
+  border-left-color: #3f3f46;
+}
+
+table {
+  color: #e4e4e7;
+  border-color: #3f3f46;
+}
+
+table th {
+  background-color: #27272a;
+  border-color: #3f3f46;
+}
+
+table td {
+  border-color: #3f3f46;
+}
+
+@media screen and (max-width: 600px) {
+  .site-nav {
     background-color: #18181b;
+    border-color: #27272a;
   }
+  .site-nav .menu-icon > svg {
+    fill: #f4f4f5;
+  }
+}
 
-  .site-title,
-  .site-title:visited,
-  .site-nav .page-link {
-    color: #f4f4f5;
-  }
+/* Light Mode Override (when toggled) */
+html[data-theme="light"] body {
+  background-color: #fdfdfd;
+  color: #111111;
+}
 
-  .site-footer {
-    border-top-color: #27272a;
-    background-color: #18181b;
-    color: #a1a1aa;
-  }
+html[data-theme="light"] .site-header {
+  border-top-color: #424242;
+  border-bottom-color: #e8e8e8;
+  background-color: #ffffff;
+}
 
-  a {
-    color: #60a5fa;
-  }
+html[data-theme="light"] .site-title,
+html[data-theme="light"] .site-title:visited,
+html[data-theme="light"] .site-nav .page-link {
+  color: #111111;
+}
 
-  a:visited {
-    color: #93c5fd;
-  }
+html[data-theme="light"] .site-footer {
+  border-top-color: #e8e8e8;
+  background-color: #ffffff;
+  color: #828282;
+}
 
-  .post-meta {
-    color: #a1a1aa;
-  }
+html[data-theme="light"] a {
+  color: #2a7ae2;
+}
 
-  pre,
-  code {
-    background-color: #1e1e22;
-    border-color: #3f3f46;
-    color: #e4e4e7;
-  }
+html[data-theme="light"] a:visited {
+  color: #1756a9;
+}
 
-  blockquote {
-    color: #a1a1aa;
-    border-left-color: #3f3f46;
-  }
+html[data-theme="light"] .post-meta {
+  color: #828282;
+}
 
-  table {
-    color: #e4e4e7;
-    border-color: #3f3f46;
-  }
+html[data-theme="light"] pre,
+html[data-theme="light"] code {
+  background-color: #eef;
+  border-color: #e8e8e8;
+  color: #111111;
+}
 
-  table th {
-    background-color: #27272a;
-    border-color: #3f3f46;
-  }
+html[data-theme="light"] blockquote {
+  color: #828282;
+  border-left-color: #e8e8e8;
+}
 
-  table td {
-    border-color: #3f3f46;
-  }
+html[data-theme="light"] table {
+  color: #111111;
+  border-color: #e8e8e8;
+}
 
-  /* Mobile hamburger menu background in dark mode */
-  @media screen and (max-width: 600px) {
-    .site-nav {
-      background-color: #18181b;
-      border-color: #27272a;
-    }
-    .site-nav .menu-icon > svg {
-      fill: #f4f4f5;
-    }
+html[data-theme="light"] table th {
+  background-color: #f0f0f0;
+  border-color: #dedede;
+}
+
+html[data-theme="light"] table td {
+  border-color: #e8e8e8;
+}
+
+@media screen and (max-width: 600px) {
+  html[data-theme="light"] .site-nav {
+    background-color: #fdfdfd;
+    border-color: #e8e8e8;
   }
+  html[data-theme="light"] .site-nav .menu-icon > svg {
+    fill: #424242;
+  }
+}
+
+/* Theme Toggle Button Styling */
+.theme-toggle {
+  background: transparent;
+  border: 1px solid #3f3f46;
+  color: inherit;
+  border-radius: 6px;
+  padding: 4px 10px;
+  margin-left: 16px;
+  cursor: pointer;
+  font-size: 13px;
+  vertical-align: middle;
+}
+
+html[data-theme="light"] .theme-toggle {
+  border-color: #d4d4d8;
+}
+
+.theme-toggle:hover {
+  opacity: 0.8;
 }
