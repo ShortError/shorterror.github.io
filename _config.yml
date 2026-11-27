@@ -1,0 +1,6 @@
+title: Yasir
+description: My personal portfolio and blog
+theme: minima
+header_pages:
+  - projects.md
+  - about.md
