@@ -1,3 +1,9 @@
+<script>
+  if (localStorage.getItem('theme') === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+</script>
+
 <header class="site-header" role="banner">
   <div class="wrapper">
     {%- assign default_paths = site.pages | map: "path" -%}
@@ -22,7 +28,30 @@
             <a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
             {%- endif -%}
           {%- endfor -%}
-          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">☀️ Light</button>
+
+          <label class="ios-switch" aria-label="Toggle dark and light theme">
+            <input type="checkbox" id="theme-toggle">
+            <span class="ios-slider">
+              <span class="ios-knob">
+                <!-- Moon Icon (Dark Mode) -->
+                <svg class="icon-moon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                <!-- Sun Icon (Light Mode) -->
+                <svg class="icon-sun" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="5"></circle>
+                  <line x1="12" y1="1" x2="12" y2="3"></line>
+                  <line x1="12" y1="21" x2="12" y2="23"></line>
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                  <line x1="1" y1="12" x2="3" y2="12"></line>
+                  <line x1="21" y1="12" x2="23" y2="12"></line>
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+              </span>
+            </span>
+          </label>
         </div>
       </nav>
     {%- endif -%}
@@ -32,26 +61,19 @@
 <script>
   (function() {
     const html = document.documentElement;
-    const toggleBtn = document.getElementById('theme-toggle');
-    const savedTheme = localStorage.getItem('theme') || 'dark';
+    const toggle = document.getElementById('theme-toggle');
 
-    function applyTheme(theme) {
-      if (theme === 'light') {
+    // Unchecked = Dark (default), Checked = Light
+    toggle.checked = (localStorage.getItem('theme') === 'light');
+
+    toggle.addEventListener('change', function() {
+      if (this.checked) {
         html.setAttribute('data-theme', 'light');
-        toggleBtn.textContent = '🌙 Dark';
+        localStorage.setItem('theme', 'light');
       } else {
         html.removeAttribute('data-theme');
-        toggleBtn.textContent = '☀️ Light';
+        localStorage.setItem('theme', 'dark');
       }
-    }
-
-    applyTheme(savedTheme);
-
-    toggleBtn.addEventListener('click', function() {
-      const current = html.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
-      const next = current === 'light' ? 'dark' : 'light';
-      localStorage.setItem('theme', next);
-      applyTheme(next);
     });
   })();
 </script>

@@ -153,23 +153,79 @@ html[data-theme="light"] table td {
   }
 }
 
-/* Theme Toggle Button Styling */
-.theme-toggle {
-  background: transparent;
-  border: 1px solid #3f3f46;
-  color: inherit;
-  border-radius: 6px;
-  padding: 4px 10px;
+/* iPhone-Style Theme Toggle Switch */
+.ios-switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 26px;
   margin-left: 16px;
-  cursor: pointer;
-  font-size: 13px;
   vertical-align: middle;
+  cursor: pointer;
 }
 
-html[data-theme="light"] .theme-toggle {
+.ios-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.ios-slider {
+  position: absolute;
+  inset: 0;
+  background-color: #27272a;
+  border: 1px solid #3f3f46;
+  border-radius: 999px;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.ios-knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background-color: #18181b;
+  color: #f4f4f5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Default Dark State: Show Moon */
+.ios-knob .icon-moon {
+  display: block;
+}
+.ios-knob .icon-sun {
+  display: none;
+}
+
+/* Checked Light State: Slide Right & Show Sun */
+.ios-switch input:checked + .ios-slider {
+  background-color: #e4e4e7;
   border-color: #d4d4d8;
 }
 
-.theme-toggle:hover {
-  opacity: 0.8;
+.ios-switch input:checked + .ios-slider .ios-knob {
+  transform: translateX(22px);
+  background-color: #ffffff;
+  color: #f59e0b;
+}
+
+.ios-switch input:checked + .ios-slider .icon-moon {
+  display: none;
+}
+
+.ios-switch input:checked + .ios-slider .icon-sun {
+  display: block;
+}
+
+@media screen and (max-width: 600px) {
+  .ios-switch {
+    margin: 8px 15px 10px 0;
+  }
 }
