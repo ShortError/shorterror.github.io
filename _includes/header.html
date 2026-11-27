@@ -4,6 +4,171 @@
   }
 </script>
 
+<style>
+  /* Hide RSS link */
+  .rss-subscribe {
+    display: none !important;
+  }
+
+  /* Default: Dark Mode */
+  body {
+    background-color: #121212 !important;
+    color: #e4e4e7 !important;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .site-header {
+    border-top-color: #27272a !important;
+    border-bottom-color: #27272a !important;
+    background-color: #18181b !important;
+  }
+
+  .site-title,
+  .site-title:visited,
+  .site-nav .page-link {
+    color: #f4f4f5 !important;
+  }
+
+  .site-footer {
+    border-top-color: #27272a !important;
+    background-color: #18181b !important;
+    color: #a1a1aa !important;
+  }
+
+  a {
+    color: #60a5fa !important;
+  }
+
+  a:visited {
+    color: #93c5fd !important;
+  }
+
+  .post-meta {
+    color: #a1a1aa !important;
+  }
+
+  pre,
+  code {
+    background-color: #1e1e22 !important;
+    border-color: #3f3f46 !important;
+    color: #e4e4e7 !important;
+  }
+
+  blockquote {
+    color: #a1a1aa !important;
+    border-left-color: #3f3f46 !important;
+  }
+
+  /* Light Mode Override */
+  html[data-theme="light"] body {
+    background-color: #fdfdfd !important;
+    color: #111111 !important;
+  }
+
+  html[data-theme="light"] .site-header {
+    border-top-color: #424242 !important;
+    border-bottom-color: #e8e8e8 !important;
+    background-color: #ffffff !important;
+  }
+
+  html[data-theme="light"] .site-title,
+  html[data-theme="light"] .site-title:visited,
+  html[data-theme="light"] .site-nav .page-link {
+    color: #111111 !important;
+  }
+
+  html[data-theme="light"] .site-footer {
+    border-top-color: #e8e8e8 !important;
+    background-color: #ffffff !important;
+    color: #828282 !important;
+  }
+
+  html[data-theme="light"] a {
+    color: #2a7ae2 !important;
+  }
+
+  html[data-theme="light"] a:visited {
+    color: #1756a9 !important;
+  }
+
+  html[data-theme="light"] .post-meta {
+    color: #828282 !important;
+  }
+
+  html[data-theme="light"] pre,
+  html[data-theme="light"] code {
+    background-color: #eef !important;
+    border-color: #e8e8e8 !important;
+    color: #111111 !important;
+  }
+
+  @media screen and (max-width: 600px) {
+    .site-nav {
+      background-color: #18181b !important;
+      border-color: #27272a !important;
+    }
+    .site-nav .menu-icon > svg {
+      fill: #f4f4f5 !important;
+    }
+    html[data-theme="light"] .site-nav {
+      background-color: #fdfdfd !important;
+      border-color: #e8e8e8 !important;
+    }
+    html[data-theme="light"] .site-nav .menu-icon > svg {
+      fill: #424242 !important;
+    }
+  }
+
+  /* Clean Pill Toggle Button (Matches your 2nd image) */
+  .theme-pill {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: 44px;
+    height: 24px;
+    padding: 0;
+    margin-left: 16px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    vertical-align: middle;
+    outline: none;
+    /* White/Light pill on Dark Page */
+    background-color: #d4d4d8;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+    transition: background-color 0.25s ease;
+  }
+
+  .theme-pill-knob {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s ease;
+  }
+
+  /* Dark pill on Light Page (Knob slides right) */
+  html[data-theme="light"] .theme-pill {
+    background-color: #27272a;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.6);
+  }
+
+  html[data-theme="light"] .theme-pill-knob {
+    transform: translateX(20px);
+    background-color: #52525b;
+  }
+
+  @media screen and (max-width: 600px) {
+    .theme-pill {
+      margin: 8px 15px 10px 0;
+    }
+  }
+</style>
+
 <header class="site-header" role="banner">
   <div class="wrapper">
     {%- assign default_paths = site.pages | map: "path" -%}
@@ -29,29 +194,9 @@
             {%- endif -%}
           {%- endfor -%}
 
-          <label class="ios-switch" aria-label="Toggle dark and light theme">
-            <input type="checkbox" id="theme-toggle">
-            <span class="ios-slider">
-              <span class="ios-knob">
-                <!-- Moon Icon (Dark Mode) -->
-                <svg class="icon-moon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                </svg>
-                <!-- Sun Icon (Light Mode) -->
-                <svg class="icon-sun" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="5"></circle>
-                  <line x1="12" y1="1" x2="12" y2="3"></line>
-                  <line x1="12" y1="21" x2="12" y2="23"></line>
-                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                  <line x1="1" y1="12" x2="3" y2="12"></line>
-                  <line x1="21" y1="12" x2="23" y2="12"></line>
-                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                </svg>
-              </span>
-            </span>
-          </label>
+          <button type="button" id="theme-toggle" class="theme-pill" aria-label="Toggle theme">
+            <span class="theme-pill-knob"></span>
+          </button>
         </div>
       </nav>
     {%- endif -%}
@@ -61,18 +206,15 @@
 <script>
   (function() {
     const html = document.documentElement;
-    const toggle = document.getElementById('theme-toggle');
+    const btn = document.getElementById('theme-toggle');
 
-    // Unchecked = Dark (default), Checked = Light
-    toggle.checked = (localStorage.getItem('theme') === 'light');
-
-    toggle.addEventListener('change', function() {
-      if (this.checked) {
-        html.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
-      } else {
+    btn.addEventListener('click', function() {
+      if (html.getAttribute('data-theme') === 'light') {
         html.removeAttribute('data-theme');
         localStorage.setItem('theme', 'dark');
+      } else {
+        html.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
       }
     });
   })();
